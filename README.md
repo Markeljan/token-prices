@@ -110,3 +110,6 @@ vercel --prod
 - using public RPC's for blockchain data (some chains may not work without a private RPC, or may not support multicall)
 - loading UI not optimised or implemented, just added placeholder loading text
 - error handling minimal and not descriptive or user-friendly
+- api request retry logic not implemented
+- debounce not implemented in amount input (to prevent too many api requests)
+- memoization not 100% implemented
