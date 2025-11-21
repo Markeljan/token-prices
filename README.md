@@ -4,15 +4,12 @@ A React application for exploring crypto token prices and calculating equivalent
 
 ## 🚀 Live Demo
 
-[View Live Application](https://your-deployment-url.vercel.app) <!-- Update with deployment URL -->
+[View Live Application](https://token-prices.vercel.app)
 
 ## ✨ Features
 
 - **Simple Mode**: Quick selection from popular tokens (USDC, USDT, ETH, WBTC)
 - **Advanced Mode**: Browse all available tokens across multiple blockchain networks
-- **Real-time Pricing**: Live token prices via Funkit API
-- **Multi-chain Support**: Ethereum, Polygon, and Base networks
-- **Responsive Design**: Mobile-friendly with dark mode
 Ï
 ## 🛠️ Tech Stack
 
@@ -86,20 +83,10 @@ const priceInfo = await getAssetPriceInfo({
 ## 🎨 Design Decisions
 
 ### Architecture
-- **Server-side API routes** keep the API key secure
-- **Custom React hooks** for reusable data fetching logic
-- **Viem multicall** for efficient batch token metadata requests
 
-### UX
-- **Progressive disclosure**: Simple mode by default, advanced mode when needed
-- **Visual feedback**: Color-coded selection (blue = source, green = target)
-- **Responsive layout**: Horizontal scrolling on mobile, grid on desktop
-
-### Libraries
-- **Next.js**: Server-side API routes, excellent DX, production optimizations
-- **Tailwind CSS v4**: Rapid UI development
-- **Viem**: Type-safe, lighter than ethers.js
-- **Biome**: Faster than ESLint/Prettier
+- **Server-side API routes** keep the Funkit API key secure, caching configurable from each fetch() request
+- **Custom React hooks** for reusable token fetching logic
+- **Viem multicall** batch token metadata requests
 
 ## 📝 Assumptions
 
@@ -118,6 +105,8 @@ vercel --prod
 
 **Important**: Add `FUNKIT_API_KEY` environment variable in Vercel project settings.
 
-## 📄 License
+## Limitations
 
-Created as part of a coding assessment.
+- using public RPC's for blockchain data (some chains may not work without a private RPC, or may not support multicall)
+- loading UI not optimised or implemented, just added placeholder loading text
+- error handling minimal and not descriptive or user-friendly
