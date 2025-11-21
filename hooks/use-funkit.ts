@@ -30,30 +30,30 @@ export const useTokenPrice = (
       return;
     }
 
-    setLoading(true);
-    setError(null);
+    const fetchTokenPrice = async () => {
+      setLoading(true);
+      setError(null);
 
-    fetch("/api/token-price", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ chainId, symbol }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch token price");
-        }
-        return res.json();
-      })
-      .then((result) => {
-        setData(result);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message || "Failed to fetch token price");
-        setLoading(false);
+      const res = await fetch("/api/token-price", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ chainId, symbol }),
       });
+
+      if (!res.ok) {
+        setError("Failed to fetch token price");
+        setLoading(false);
+        return;
+      }
+
+      const result = await res.json();
+      setData(result);
+      setLoading(false);
+    };
+
+    fetchTokenPrice();
   }, [chainId, symbol]);
 
   return { data, loading, error };
