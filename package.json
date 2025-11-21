@@ -10,6 +10,7 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@funkit/api-base": "^1.12.16",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"
